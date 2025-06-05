@@ -1,6 +1,6 @@
 import Header from "@/components";
 import "./globals.css";
-import { Metadata } from "next"
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Aprendendo Next",
@@ -13,12 +13,12 @@ export const metadata: Metadata = {
     follow: true,
     index: true,
     nocache: true,
-    googleBot:{
+    googleBot: {
       index: true,
       follow: true,
-    }
-  }
-}
+    },
+  },
+};
 
 export default function RootLayout({
   children,
@@ -27,9 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased`}
-      >
+      <body className={`antialiased`}>
         <Header />
         {children}
       </body>

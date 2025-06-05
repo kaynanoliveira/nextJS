@@ -1,9 +1,40 @@
-import React from "react";
+interface PostProps {
+  id: number;
+  title: string;
+  body: string;
+  userId: number;
+}
 
-export default function Posts() {
+interface ResponseProps {
+  posts: PostProps[];
+}
+
+export default async function Posts() {
+  const response = await fetch("https://dummyjson.com/posts");
+  const data: ResponseProps = await response.json();
+
+  async function handleClicou() {
+    "use server";
+
+    const response = await fetch("https://dummyjson.com/posts");
+    const data: ResponseProps = await response.json();
+    console.log(data.posts);
+  }
+
   return (
     <div>
-      <h1>Todos os Posts</h1>
+      <h1 className="text-center mt-05 mb-2 font-bold text-3xl">
+        Todos os Posts
+      </h1>
+      <button onClick={handleClicou}>Buscar Posts</button>
+      <div className="flex flex-col gap-4 mx-2">
+        {data.posts.map((post) => (
+          <div key={post.id} className="bg-gray-200 p-4 rounded-md">
+            <h2 className="font-bold">{post.title}</h2>
+            <p>{post.body}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
