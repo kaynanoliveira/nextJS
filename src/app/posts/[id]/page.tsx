@@ -1,3 +1,6 @@
+import { Suspense } from "react";
+import { PostInfo } from "./_components/post";
+
 export default async function DetailPost({
   params,
 }: {
@@ -7,7 +10,12 @@ export default async function DetailPost({
 
   return (
     <div>
-      <h1>Detalhes do Post {id}</h1>
+      <h1 className="text-4xl my-5 font-bold text-center">
+        Detalhes do Post: {id}
+      </h1>
+      <Suspense fallback={<h1>Carregando...</h1>}>
+        <PostInfo id={id} />
+      </Suspense>
     </div>
   );
 }
